@@ -160,6 +160,8 @@ C:\Users\RPM\assessment-platform-developer\assessment-platform-developer\obj\Deb
 C:\Users\RPM\assessment-platform-developer\assessment-platform-developer\obj\Debug\assessment-platform-developer.csproj.CopyComplete
 C:\Users\RPM\assessment-platform-developer\assessment-platform-developer\obj\Debug\assessment-platform-developer.dll
 C:\Users\RPM\assessment-platform-developer\assessment-platform-developer\obj\Debug\assessment-platform-developer.pdb
+C:\Users\DouglasHahn\source\Repos\ScanSourceAssessment\assessment-platform-developer\obj\Debug\assessment-platform-developer.csproj.AssemblyReference.cache
+C:\Users\DouglasHahn\source\Repos\ScanSourceAssessment\assessment-platform-developer\obj\Debug\assessment-platform-developer.csproj.CoreCompileInputs.cache
 C:\Users\DouglasHahn\source\Repos\ScanSourceAssessment\assessment-platform-developer\bin\assessment-platform-developer.dll.config
 C:\Users\DouglasHahn\source\Repos\ScanSourceAssessment\assessment-platform-developer\bin\assessment-platform-developer.dll
 C:\Users\DouglasHahn\source\Repos\ScanSourceAssessment\assessment-platform-developer\bin\assessment-platform-developer.pdb
@@ -209,6 +211,7 @@ C:\Users\DouglasHahn\source\Repos\ScanSourceAssessment\assessment-platform-devel
 C:\Users\DouglasHahn\source\Repos\ScanSourceAssessment\assessment-platform-developer\bin\roslyn\vbc.exe.config
 C:\Users\DouglasHahn\source\Repos\ScanSourceAssessment\assessment-platform-developer\bin\roslyn\VBCSCompiler.exe
 C:\Users\DouglasHahn\source\Repos\ScanSourceAssessment\assessment-platform-developer\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\DouglasHahn\source\Repos\ScanSourceAssessment\assessment-platform-developer\bin\AjaxControlToolkit.dll
 C:\Users\DouglasHahn\source\Repos\ScanSourceAssessment\assessment-platform-developer\bin\Antlr3.Runtime.dll
 C:\Users\DouglasHahn\source\Repos\ScanSourceAssessment\assessment-platform-developer\bin\AspNet.ScriptManager.jQuery.dll
 C:\Users\DouglasHahn\source\Repos\ScanSourceAssessment\assessment-platform-developer\bin\EntityFramework.dll
@@ -232,8 +235,6 @@ C:\Users\DouglasHahn\source\Repos\ScanSourceAssessment\assessment-platform-devel
 C:\Users\DouglasHahn\source\Repos\ScanSourceAssessment\assessment-platform-developer\bin\Newtonsoft.Json.xml
 C:\Users\DouglasHahn\source\Repos\ScanSourceAssessment\assessment-platform-developer\bin\Microsoft.AspNet.FriendlyUrls.xml
 C:\Users\DouglasHahn\source\Repos\ScanSourceAssessment\assessment-platform-developer\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
-C:\Users\DouglasHahn\source\Repos\ScanSourceAssessment\assessment-platform-developer\obj\Debug\assessment-platform-developer.csproj.AssemblyReference.cache
-C:\Users\DouglasHahn\source\Repos\ScanSourceAssessment\assessment-platform-developer\obj\Debug\assessment-platform-developer.csproj.CoreCompileInputs.cache
 C:\Users\DouglasHahn\source\Repos\ScanSourceAssessment\assessment-platform-developer\obj\Debug\assessme.14EB4F87.Up2Date
 C:\Users\DouglasHahn\source\Repos\ScanSourceAssessment\assessment-platform-developer\obj\Debug\assessment-platform-developer.dll
 C:\Users\DouglasHahn\source\Repos\ScanSourceAssessment\assessment-platform-developer\obj\Debug\assessment-platform-developer.pdb
