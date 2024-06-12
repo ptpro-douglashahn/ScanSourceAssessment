@@ -63,7 +63,7 @@
 		-->
 		<div class="container body-content">
 			<h2>Customer Registry</h2>
-            <asp:DropDownList runat="server" ID="CustomersDDL" CssClass="form-control" OnSelectedIndexChanged="CustomersDDL_SelectedIndexChanged" AutoPostBack="true" />
+            <asp:DropDownList runat="server" ID="CustomersDDL" CssClass="form-control" OnSelectedIndexChanged="CustomersDDL_SelectedIndexChanged" AutoPostBack="true"/>
 		</div>
 		<!--
 		    Generic scripts
@@ -126,7 +126,7 @@
 									errormessage="Email cannot be blank." ValidationGroup="CustomerEmailValidationGroup" ForeColor="Red"/>
 								<br />
 								<asp:CustomValidator ID="CustomerEmailCustomValidator" runat="server" ErrorMessage="Email is not valid" 
-									ControlToValidate="CustomerEmail" OnServerValidate="ValidateEmail" ForeColor="Red" ValidationGroup="CustomerEmailValidationGroup"></asp:CustomValidator>
+									ControlToValidate="CustomerEmail" OnServerValidate="ValidateEmail" ForeColor="Red" ValidationGroup="CustomerEmailValidationGroup" ></asp:CustomValidator>
        						</div>
 							<!--
 							    Customer Phone

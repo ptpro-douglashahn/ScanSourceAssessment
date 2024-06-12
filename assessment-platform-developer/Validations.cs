@@ -395,6 +395,7 @@ namespace assessment_platform_developer
         public static void Zip(ref string Zip, string Country)
         {
             {
+                Zip = Zip.ToUpper().Trim();
                 if (Country == "Canada")
                 {
                     if (Regex.IsMatch(Zip, @"^[ABCEGHJ-NPRSTVXY]\d[ABCEGHJ-NPRSTV-Z][ ]\d[ABCEGHJ-NPRSTV-Z]\d$"))

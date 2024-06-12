@@ -1,8 +1,7 @@
 ScanSource Assessment - Douglas Hahn
 
 This is the first time I have programmed in Entity Framework.  Also, before this project, I had never heard of Command Query Responsibility Segregation Pattern.  However, the concepts that I have discovered are interesting and I would like to learn how to implement these concepts better.
-
-
+I'm particularly unsure about the correct way to implement DBContext.  I focused, instead, on making the screen functional.
 
 
 Issues Found:
@@ -67,11 +66,11 @@ Contact Title is converted to proper case if it is all upper case or all lower c
 Contact Notes is added onto the screen.  (It was in the data but not on the screen).
 Contact Notes is limited to 100 characters.
 
-When you select an existing contact, the data is not displayed.  It should be displayed and the button should be changed to "Update".
+When you select an existing contact, the data is not displayed.  It should be displayed and two buttons should appear "Update" and "Delete" and the "Add" button should disappear.
 
 There was no delete option.
 
-There was a nomenclature issue with the CustomerService.  The file name was "CustomersService", but the class name was "CustomerService".  I left this the way it was, but when I made the CustomersServiceRead and CustomersServiceWrite I made the names using "Customers".
+There was a nomenclature issue with the CustomerService and CustomerRepository.  The file name was "CustomersService", but the class name was "CustomerService".  I left this the way it was, but when I made the CustomersServiceRead and CustomersServiceWrite I made the names using "Customers".
 
 
 Enhancements:
@@ -103,12 +102,25 @@ Move CustomerDBContext from Customer.cs to CustomerDBContext.cs
 
 O - Open-closed Principle
 
-Initially, I modified the Customer.cs file to add the validations, however, this would contradict the Open/Closed principle, so I restored the Customer.cs (except for the enums) and instead inherited it in the CustomerWithValidations class.
+Initially, I modified the Customer.cs file to add the validations, however, this would contradict the Open/Closed principle, so I restored the Customer.cs (except for the enums).
+I left the Customer class but inherited it for the CustomerRead and CustomerWrite.
 
 L - Liskov Substitution Principle
 
+Not sure if there was an instance where this principle could be applied in this system.
+I couldn't inherit the CustomersRepository when I was making CustomersRepositoryRead and CustomersRepositoryWrite
+because we didn't want certain methods in the destination, for example, we didn't want Add, Update, and Delete in 
+the Read Class.
 
-I - Interface Segragation Principle
+I - Interface Segregation Principle
 
+The Read and Write classes were separated to try and make them more efficient.
 
 D  - Dependency Inversion Principle
+
+Not sure that I implemented this principle.
+
+
+Command Query Responsibility Segregation Pattern
+
+I'm not sure that I accomplished the task you were wanting.  I did split the models, the services, and the repositories into read and write components.  Because the data is not written to a database, I'm not sure if it is working properly.  I need to learn more about this concept before I can implement it properly.

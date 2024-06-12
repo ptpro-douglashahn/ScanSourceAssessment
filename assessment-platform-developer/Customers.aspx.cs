@@ -77,6 +77,7 @@ namespace assessment_platform_developer
         /// </summary>
         private void PopulateCountryDropdownList()
         {
+            CountryDropDownList.Items.Clear();
             var countryList = Enum.GetValues(typeof(Countries))
                 .Cast<Countries>()
                 .Select(c => new ListItem
@@ -94,6 +95,9 @@ namespace assessment_platform_developer
         /// </summary>
         private void PopulateProvinceStateDropDownLists()
 		{
+            StateDropDownList.Items.Clear();
+            StateDropDownList.Items.Add(new ListItem(""));
+
             if (CountryDropDownList.SelectedItem.Text == "Canada")
             {
                 var provinceList = Enum.GetValues(typeof(CanadianProvinces))
@@ -104,10 +108,7 @@ namespace assessment_platform_developer
                         Value = ((int)p).ToString()
                     })
                     .ToArray();
-                StateDropDownList.Items.Clear();
-                StateDropDownList.Items.Add(new ListItem(""));
                 StateDropDownList.Items.AddRange(provinceList);
-
                 CustomerStateLabel.Text = "Province/Territory";
                 CustomerZipLabel.Text = "Postal Code";
             }
@@ -121,10 +122,7 @@ namespace assessment_platform_developer
                         Value = ((int)p).ToString()
                     })
                     .ToArray();
-                StateDropDownList.Items.Clear();
-                StateDropDownList.Items.Add(new ListItem(""));
                 StateDropDownList.Items.AddRange(stateList);
-
                 CustomerStateLabel.Text = "State";
                 CustomerZipLabel.Text = "Zip Code";
             }
@@ -160,7 +158,7 @@ namespace assessment_platform_developer
             var testContainer = (Container)HttpContext.Current.Application["DIContainer"];
             var customerService = testContainer.GetInstance<ICustomersServiceRead>();
             var lastCustID = 0;
-            foreach (var cust in customerService.GetAllCustomers())
+            foreach (CustomerRead cust in customers)
             {
                 if (cust.ID > lastCustID)
                 {
@@ -204,9 +202,10 @@ namespace assessment_platform_developer
 
                 customers.Add(customerRead);
 
-                PopulateCustomerListBox();
-
                 ClearScreen();
+                PopulateCountryDropdownList();
+                PopulateProvinceStateDropDownLists();
+                PopulateCustomerListBox();
             }
             catch (Exception ex) 
 			{
@@ -251,9 +250,12 @@ namespace assessment_platform_developer
                     //  I need to populate the customer list box because the name may have changed
                     //
                     customerRead.CastFromCustomerWrite(customer);
-                    PopulateCustomerListBox();
 
                     ClearScreen();
+
+                    PopulateCountryDropdownList();
+                    PopulateProvinceStateDropDownLists();
+                    PopulateCustomerListBox();
                 }
                 catch (Exception ex)
                 {
@@ -285,6 +287,7 @@ namespace assessment_platform_developer
             CustomerRead customerRead = customers.Find(c => c.ID == custID);
             customers.Remove(customerRead);
             PopulateCustomerListBox();
+            PopulateCountryDropdownList();
             PopulateProvinceStateDropDownLists();
         }
         /// <summary>
@@ -300,7 +303,7 @@ namespace assessment_platform_developer
             CustomerCity.Text = string.Empty;
             StateDropDownList.SelectedIndex = -1;
             CustomerZip.Text = string.Empty;
-            CountryDropDownList.SelectedIndex = -1;
+            CountryDropDownList.SelectedIndex = 0;
             CustomerNotes.Text = string.Empty;
             ContactName.Text = string.Empty;
             ContactPhone.Text = string.Empty;
@@ -308,6 +311,9 @@ namespace assessment_platform_developer
 			ContactTitle.Text = string.Empty;
 			ContactNotes.Text = string.Empty;
             CustomerEmailRequired.Enabled = true;
+
+            CustomerEmailRequired.Text = string.Empty;
+
             AddButton.Visible = true;
             UpdateButton.Visible = false;
             DeleteButton.Visible = false;
@@ -322,7 +328,14 @@ namespace assessment_platform_developer
 			if (CustomersDDL.SelectedIndex == 0)
 			{
 				ClearScreen();
-			} else
+
+                CustomerEmailRequired.ErrorMessage = "";
+
+                AddButton.Visible = true;
+                UpdateButton.Visible = false;
+                DeleteButton.Visible = false;
+            }
+            else
 			{
                 int CustID = 0;
                 int.TryParse(CustomersDDL.SelectedValue, out CustID);
@@ -334,7 +347,9 @@ namespace assessment_platform_developer
                 CustomerEmail.Text = customer.Email;
                 CustomerPhone.Text = customer.Phone;
                 CustomerCity.Text = customer.City;
+                PopulateCountryDropdownList();
                 CountryDropDownList.SelectedItem.Text = customer.Country;
+                PopulateProvinceStateDropDownLists();
                 StateDropDownList.SelectedItem.Text = customer.State;
                 CustomerZip.Text = customer.Zip;
                 CustomerNotes.Text = customer.Notes;
@@ -344,7 +359,7 @@ namespace assessment_platform_developer
                 ContactTitle.Text = customer.ContactTitle;
                 ContactNotes.Text = customer.ContactNotes;
 
-				AddButton.Visible = false;
+                AddButton.Visible = false;
 				UpdateButton.Visible = true;
 				DeleteButton.Visible = true;
             }
@@ -366,15 +381,20 @@ namespace assessment_platform_developer
         protected void ValidateEmail(object sender, ServerValidateEventArgs args)
         {
             var emailToCheck = args.Value.ToString();
+            CustomValidator customValidator = (CustomValidator)sender;
+            string controlToValidate = customValidator.ControlToValidate;
             try
             {
                 Validations.EMailAddressRFC5322(ref emailToCheck);
                 args.IsValid = true;
+                if (controlToValidate == "CustomerEmail") { CustomerPhone.Focus(); }
+                if (controlToValidate == "ContactEmail") { ContactPhone.Focus(); }
             } catch (Exception ex)
             {
                 args.IsValid = false;
                 CustomValidator cv = (CustomValidator)sender;
                 cv.ErrorMessage = ex.Message;
+                CustomerEmail.Focus();
             }
             return;
         }
